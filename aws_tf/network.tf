@@ -17,9 +17,8 @@ resource "aws_internet_gateway" "sprint1_igw" {
   }
 }
 
-
 # パブリックサブネットの作成
-resource "aws_subnet" "sprint1_web_sub" {
+resource "aws_subnet" "sprint1_web_sub_01" {
   vpc_id                  = aws_vpc.sprint1_vpc.id
   cidr_block              = "10.0.0.0/24"     # サブネットの範囲を指定
   availability_zone       = "ap-northeast-1a" # アベイラビリティゾーンを指定
@@ -29,7 +28,7 @@ resource "aws_subnet" "sprint1_web_sub" {
   }
 }
 
-resource "aws_subnet" "sprint1_api_sub" {
+resource "aws_subnet" "sprint1_api_sub_01" {
   vpc_id                  = aws_vpc.sprint1_vpc.id
   cidr_block              = "10.0.1.0/24"     # サブネットの範囲を指定
   availability_zone       = "ap-northeast-1c" # アベイラビリティゾーンを指定
@@ -77,12 +76,12 @@ resource "aws_route" "sprint1_api_route" {
 # ルートテーブルとサブネットの関連付け(web)
 resource "aws_route_table_association" "sprint1_route_asso_igw_web" {
   route_table_id = aws_route_table.sprint1_route_table_web.id
-  subnet_id      = aws_subnet.sprint1_web_sub.id
+  subnet_id      = aws_subnet.sprint1_web_sub_01.id
 }
 
 # ルートテーブルとサブネットの関連付け(api)
 resource "aws_route_table_association" "sprint1_route_asso_igw_api" {
   route_table_id = aws_route_table.sprint1_route_table_api.id
-  subnet_id      = aws_subnet.sprint1_api_sub.id
+  subnet_id      = aws_subnet.sprint1_api_sub_01.id
 }
 

@@ -35,11 +35,21 @@ resource "aws_instance" "api" {
     #!/bin/bash
     yum update -y
     yum install -y git
-    git clone https://github.com/tamako8782/sprint1.git
-     ./sprint1/api/api_for_linux_amd 
+    yum install -y https://dev.mysql.com/get/mysql84-community-release-el9-1.noarch.rpm
+    yum install -y mysql
+    systemctl start mysqld
+    systemctl enable mysqld
+    git clone https://github.com/tamako8782/sprint2.git
+     ./sprint2/api/api_for_linux_amd 
   EOF
 
   user_data_replace_on_change = true
+  provisioner "file" {
+      source      = "../api/.env"
+      destination = "./sprint2/api/.env"
+  }
+
+
   tags = {
     Name = "api-server-01"
   }
