@@ -34,7 +34,7 @@ func RepoGetReservation(page int) ([]models.Reservation, error) {
 		return nil, err
 	}
 	if err := db.Ping(); err != nil {
-		log.Fatalln(err)
+		log.Println(err)
 		return nil, err
 	}
 
