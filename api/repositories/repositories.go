@@ -19,7 +19,7 @@ func RepoGetReservation(page int) ([]models.Reservation, error) {
 
 	err := godotenv.Load(".env")
 	if err != nil {
-		log.Fatalln(err)
+		log.Println("unabled to load .env file")
 	}
 
 	dbUser := os.Getenv("DB_USER")
