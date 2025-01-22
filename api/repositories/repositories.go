@@ -44,7 +44,7 @@ func RepoGetReservation(page int) ([]models.Reservation, error) {
 
 	rows, err := db.Query(sqlStr, pageSize, offset)
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
 	}
 
 	Reservations := make([]models.Reservation, 0)

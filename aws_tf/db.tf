@@ -73,3 +73,7 @@ resource "aws_security_group" "tamako_rds_sg" {
 output "db_endpoint" {
   value = aws_db_instance.sprint2_db_instance.endpoint
 }
+
+output "db_address" {
+  value = aws_db_instance.sprint2_db_instance.address
+}

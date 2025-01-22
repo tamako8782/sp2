@@ -43,7 +43,7 @@ resource "aws_instance" "api" {
     cat <<EOT >> /sp2/api/.env
     DB_USER=${var.db_username}
     DB_PASS=${var.db_password}
-    DB_HOST=${aws_db_instance.sprint2_db_instance.endpoint}
+    DB_HOST=${aws_db_instance.sprint2_db_instance.address}
     DB_PORT=${var.db_port}
     DB_NAME=${var.db_name}
     EOT
