@@ -371,4 +371,5 @@ terraform.rc
 **/*.pem
 
 # docker用テストdbのdbvolフォルダ配下
-dbvol/
+**/dbvol/
+

@@ -10,9 +10,9 @@ resource "aws_instance" "web" {
     yum install -y git nginx
     systemctl enable nginx
     systemctl start nginx
-    git clone https://github.com/tamako8782/sprint2.git
+    git clone https://github.com/tamako8782/sp2.git
     rm -rf /usr/share/nginx/html/*
-    mv sprint2/web/src/* /usr/share/nginx/html/
+    mv sp2/web/src/* /usr/share/nginx/html/
     cd /usr/share/nginx/html/
     sed -i 's|const apiIp = "APIIPADDRESS"|const apiIp = "${aws_instance.api.public_ip}"|' /usr/share/nginx/html/index.js
     systemctl restart nginx
@@ -39,11 +39,16 @@ resource "aws_instance" "api" {
     yum install -y mysql
     systemctl start mysqld
     systemctl enable mysqld
-    cat <<EOT > /.env
-    ${file("../api/.env")}
+    git clone https://github.com/tamako8782/sp2.git
+    cat <<EOT >> /sp2/api/.env
+    DB_USER=${var.db_username}
+    DB_PASS=${var.db_password}
+    DB_HOST=${aws_db_instance.sprint2_db_instance.endpoint}
+    DB_PORT=${var.db_port}
+    DB_NAME=${var.db_name}
     EOT
-    git clone https://github.com/tamako8782/sprint2.git
-     ./sprint2/api/api_for_linux_amd 
+    
+     ./sp2/api/api_for_linux_amd2 
   EOF
 
   user_data_replace_on_change = true

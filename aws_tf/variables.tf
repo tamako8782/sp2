@@ -13,7 +13,13 @@ variable "db_password" {
   sensitive = true
 }
 
+variable "db_port" {
+  type = string
+  default = "3306"
+}
+
 variable "multi_az" {
   type = bool
   default = false
 }
+
