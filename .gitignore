@@ -373,3 +373,5 @@ terraform.rc
 # docker用テストdbのdbvolフォルダ配下
 **/dbvol/
 
+# 暗号化されたパスワード
+*.asc
